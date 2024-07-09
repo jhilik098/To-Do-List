@@ -1,0 +1,130 @@
+{
+ "cells": [
+  {
+   "cell_type": "code",
+   "execution_count": null,
+   "id": "39ade3b8",
+   "metadata": {},
+   "outputs": [
+    {
+     "name": "stdout",
+     "output_type": "stream",
+     "text": [
+      "\n",
+      "To-Do List Menu:\n",
+      "1. Add Task\n",
+      "2. Remove Task\n",
+      "3. Mark Task Completed\n",
+      "4. Display Tasks\n",
+      "5. Exit\n",
+      "Choose an option: 1\n",
+      "Enter the task: give me icecreame\n",
+      "\n",
+      "To-Do List Menu:\n",
+      "1. Add Task\n",
+      "2. Remove Task\n",
+      "3. Mark Task Completed\n",
+      "4. Display Tasks\n",
+      "5. Exit\n",
+      "Choose an option: 2\n",
+      "1. give me icecreame [Not Completed]\n"
+     ]
+    }
+   ],
+   "source": [
+    "class ToDoList:\n",
+    "    def __init__(self):\n",
+    "        self.tasks = []\n",
+    "\n",
+    "    def add_task(self, task):\n",
+    "        self.tasks.append({\"task\": task, \"completed\": False})\n",
+    "\n",
+    "    def remove_task(self, task_index):\n",
+    "        if 0 <= task_index < len(self.tasks):\n",
+    "            self.tasks.pop(task_index)\n",
+    "        else:\n",
+    "            print(\"Invalid task number.\")\n",
+    "\n",
+    "    def mark_task_completed(self, task_index):\n",
+    "        if 0 <= task_index < len(self.tasks):\n",
+    "            self.tasks[task_index][\"completed\"] = True\n",
+    "        else:\n",
+    "            print(\"Invalid task number.\")\n",
+    "\n",
+    "    def display_tasks(self):\n",
+    "        if not self.tasks:\n",
+    "            print(\"No tasks in the list.\")\n",
+    "            return\n",
+    "\n",
+    "        for index, task in enumerate(self.tasks):\n",
+    "            status = \"Completed\" if task[\"completed\"] else \"Not Completed\"\n",
+    "            print(f\"{index + 1}. {task['task']} [{status}]\")\n",
+    "\n",
+    "def main():\n",
+    "    todo_list = ToDoList()\n",
+    "\n",
+    "    while True:\n",
+    "        print(\"\\nTo-Do List Menu:\")\n",
+    "        print(\"1. Add Task\")\n",
+    "        print(\"2. Remove Task\")\n",
+    "        print(\"3. Mark Task Completed\")\n",
+    "        print(\"4. Display Tasks\")\n",
+    "        print(\"5. Exit\")\n",
+    "        choice = input(\"Choose an option: \")\n",
+    "\n",
+    "        if choice == \"1\":\n",
+    "            task = input(\"Enter the task: \")\n",
+    "            todo_list.add_task(task)\n",
+    "        elif choice == \"2\":\n",
+    "            todo_list.display_tasks()\n",
+    "            if todo_list.tasks:\n",
+    "                task_index = int(input(\"Enter the task number to remove: \")) - 1\n",
+    "                todo_list.remove_task(task_index)\n",
+    "        elif choice == \"3\":\n",
+    "            todo_list.display_tasks()\n",
+    "            if todo_list.tasks:\n",
+    "                task_index = int(input(\"Enter the task number to mark completed: \")) - 1\n",
+    "                todo_list.mark_task_completed(task_index)\n",
+    "        elif choice == \"4\":\n",
+    "            todo_list.display_tasks()\n",
+    "        elif choice == \"5\":\n",
+    "            print(\"Exiting To-Do List. Goodbye!\")\n",
+    "            break\n",
+    "        else:\n",
+    "            print(\"Invalid choice. Please try again.\")\n",
+    "\n",
+    "if __name__ == \"__main__\":\n",
+    "    main()\n"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": null,
+   "id": "d5773e80",
+   "metadata": {},
+   "outputs": [],
+   "source": []
+  }
+ ],
+ "metadata": {
+  "kernelspec": {
+   "display_name": "Python 3 (ipykernel)",
+   "language": "python",
+   "name": "python3"
+  },
+  "language_info": {
+   "codemirror_mode": {
+    "name": "ipython",
+    "version": 3
+   },
+   "file_extension": ".py",
+   "mimetype": "text/x-python",
+   "name": "python",
+   "nbconvert_exporter": "python",
+   "pygments_lexer": "ipython3",
+   "version": "3.10.9"
+  }
+ },
+ "nbformat": 4,
+ "nbformat_minor": 5
+}
